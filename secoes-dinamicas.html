@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção Dinâmica</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .pay-section-one {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .box-content-sections {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container-box-filter {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .box-filter-sections {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .filter-sections {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .filter-sections.active {
+            background-color: #4e3d90;
+            color: #fff;
+        }
+
+        .box-text-content-section .box-content-section {
+            display: none;
+        }
+
+        .box-text-content-section .box-content-section.active {
+            display: block;
+        }
+
+        .box-text-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .box-text-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn-sections {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28285b;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-sections:hover {
+            background-color: #4e3d90;
+        }
+
+        .box-imgs-sections {
+            margin-top: 20px;
+        }
+
+        .box-img-section {
+            display: none;
+        }
+
+        .box-img-section.active {
+            display: block;
+            text-align: center;
+        }
+
+        .box-img-section img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <section class="pay-section-one font">
+        <div class="box-content-sections">
+            <div class="container-box-filter">
+                <div class="box-filter-sections">
+                    <span class="filter-sections active" data-section="section-1">Benefícios</span>
+                    <span class="filter-sections" data-section="section-2">Soluções</span>
+                    <span class="filter-sections" data-section="section-3">Segurança</span>
+                    <span class="filter-sections" data-section="section-4">99Empresta</span>
+                    <span class="filter-sections" data-section="section-5">Taxas e Limites</span>
+                </div>
+            </div>
+            <div class="box-text-content-section">
+                <div class="box-content-section active" data-section="section-1">
+                    <div class="box-text-section">
+                        <h2>Aqui tem lucratividade nas alturas</h2>
+                        <p>Na 99Pay, seu saldo lucra até 110% do CDI, isso é mais do que a poupança e outras contas digitais.</p>
+                    </div>
+                    <a href="#" class="btn-sections">Saiba mais</a>
+                </div>
+                <div class="box-content-section" data-section="section-2">
+                    <div class="box-text-section">
+                        <h2>Facilite seu dia a dia com a 99Pay</h2>
+                        <p>Utilize o Pix para transferir seu dinheiro, efetue pagamentos e explore criptomoedas.</p>
+                    </div>
+                    <a href="#" class="btn-sections">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="box-imgs-sections">
+            <div class="box-img-section active" data-section="section-1">
+                <img src="beneficios.png" alt="Benefícios">
+            </div>
+            <div class="box-img-section" data-section="section-2">
+                <img src="solucoes.png" alt="Soluções">
+            </div>
+        </div>
+    </section>
+    <script>
+        // Script para alternar entre as tabs
+        const filters = document.querySelectorAll('.filter-sections');
+        const contents = document.querySelectorAll('.box-content-section');
+        const images = document.querySelectorAll('.box-img-section');
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove "active" de todos
+                filters.forEach(f => f.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                images.forEach(img => img.classList.remove('active'));
+
+                // Adiciona "active" no atual
+                filter.classList.add('active');
+                const section = filter.dataset.section;
+                document.querySelector(`.box-content-section[data-section="${section}"]`).classList.add('active');
+                document.querySelector(`.box-img-section[data-section="${section}"]`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
